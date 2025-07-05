@@ -1,22 +1,24 @@
-.crypto-list-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+/* Crypto Dashboard CSS */
+.crypto-dashboard {
   min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 80px 0;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+/* Header Section */
 .section-header {
   text-align: center;
   margin-bottom: 50px;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #1a202c;
   margin-bottom: 16px;
@@ -31,37 +33,43 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(135deg, #00d1ff 0%, #0099cc 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   border-radius: 2px;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   color: #64748b;
-  margin: 0;
+  margin: 24px 0 0 0;
+  font-weight: 400;
 }
 
+/* Grid Layout */
 .coin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 24px;
   margin-top: 20px;
 }
 
+/* Crypto Card Styles */
 .crypto-card {
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid #e5e7eb;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .crypto-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  border-color: rgba(0, 209, 255, 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .card-header {
@@ -79,8 +87,8 @@
 }
 
 .coin-logo {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -91,7 +99,7 @@
 }
 
 .coin-name {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1a202c;
   margin: 0;
@@ -99,10 +107,11 @@
 }
 
 .coin-symbol {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #64748b;
   font-weight: 500;
   text-transform: uppercase;
+  margin-top: 2px;
 }
 
 .price-info {
@@ -117,7 +126,7 @@
 }
 
 .price-change {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
   display: flex;
   flex-direction: column;
@@ -134,7 +143,7 @@
 }
 
 .percentage {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   opacity: 0.8;
 }
 
@@ -156,7 +165,7 @@
 }
 
 .label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #64748b;
   font-weight: 500;
   text-transform: uppercase;
@@ -164,7 +173,7 @@
 }
 
 .value {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
@@ -179,11 +188,11 @@
 .more-info-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #00d1ff 0%, #0099cc 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: #ffffff;
   border: none;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -195,77 +204,13 @@
 }
 
 .more-info-btn:hover {
-  background: linear-gradient(135deg, #0099cc 0%, #007acc 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
-}
-
-.arrow {
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
-}
-
-.arrow.up {
-  transform: rotate(180deg);
-}
-
-.expanded-info {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #f1f5f9;
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-    padding-top: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 500px;
-    padding-top: 20px;
-  }
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.info-label {
-  font-size: 0.8rem;
-  color: #64748b;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.info-value {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1a202c;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.info-value small {
-  font-size: 0.75rem;
-  color: #64748b;
-  font-weight: 400;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
 /* Modal Styles */
-.blur-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -281,11 +226,11 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-.more-info-modal {
+.crypto-modal {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  max-width: 600px;
+  max-width: 1000px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
@@ -294,7 +239,7 @@
 }
 
 .modal-header {
-  padding: 30px 30px 20px;
+  padding: 32px 32px 24px;
   border-bottom: 1px solid #f1f5f9;
   display: flex;
   align-items: center;
@@ -308,8 +253,8 @@
 }
 
 .modal-coin-logo {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -322,14 +267,14 @@
 }
 
 .modal-coin-details .coin-symbol {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   color: #64748b;
   font-weight: 600;
 }
 
 .modal-close-btn {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border: none;
   background: #f1f5f9;
   border-radius: 50%;
@@ -337,7 +282,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 24px;
   color: #64748b;
   transition: all 0.3s ease;
 }
@@ -348,12 +293,12 @@
 }
 
 .modal-body {
-  padding: 30px;
+  padding: 32px;
 }
 
 .modal-current-price {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .modal-current-price .price {
@@ -364,7 +309,7 @@
 }
 
 .modal-current-price .change {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -380,74 +325,32 @@
   color: #dc2626;
 }
 
-.price-bar-section {
-  margin-bottom: 30px;
+/* Chart Section */
+.chart-section {
+  margin-bottom: 32px;
 }
 
-.price-bar-section h4 {
-  font-size: 1.1rem;
+.chart-section h4 {
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1a202c;
   margin-bottom: 16px;
   text-align: center;
 }
 
-.price-bar {
-  position: relative;
-  height: 30px;
-  background: #f1f5f9;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 12px;
+.chart-container {
+  height: 300px;
+  width: 100%;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
 }
 
-.price-bar-inner {
-  height: 100%;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.price-bar-inner.up {
-  background: linear-gradient(90deg, #16a34a, #22c55e);
-}
-
-.price-bar-inner.down {
-  background: linear-gradient(90deg, #dc2626, #ef4444);
-}
-
-.price-bar-indicator {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 20px;
-  background: #1a202c;
-  border-radius: 2px;
-  z-index: 2;
-}
-
-.price-bar-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #64748b;
-  font-weight: 500;
-}
-
-.price-bar-labels .current-position {
-  position: absolute;
-  top: -25px;
-  transform: translateX(-50%);
-  font-size: 0.8rem;
-  color: #1a202c;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
+/* Stats Grid */
 .modal-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
@@ -456,10 +359,17 @@
   border-radius: 12px;
   padding: 20px;
   text-align: center;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.modal-stat-item:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
 }
 
 .modal-stat-item .label {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #64748b;
   font-weight: 500;
   text-transform: uppercase;
@@ -468,7 +378,7 @@
 }
 
 .modal-stat-item .value {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #1a202c;
   margin-bottom: 4px;
@@ -479,14 +389,64 @@
   color: #64748b;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered Animation for Cards */
+.crypto-card:nth-child(1) { animation-delay: 0.1s; }
+.crypto-card:nth-child(2) { animation-delay: 0.2s; }
+.crypto-card:nth-child(3) { animation-delay: 0.3s; }
+.crypto-card:nth-child(4) { animation-delay: 0.4s; }
+.crypto-card:nth-child(5) { animation-delay: 0.5s; }
+.crypto-card:nth-child(6) { animation-delay: 0.6s; }
+
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .coin-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  
+  .modal-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
-  .crypto-list-section {
+  .crypto-dashboard {
     padding: 60px 0;
   }
   
   .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .coin-grid {
@@ -514,66 +474,14 @@
   }
   
   .current-price {
-    font-size: 1.8rem;
-  }
-  
-  .info-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 15px;
-  }
-  
-  .section-title {
     font-size: 1.75rem;
   }
   
-  .section-subtitle {
-    font-size: 1rem;
-  }
-  
-  .crypto-card {
-    border-radius: 12px;
-  }
-  
-  .card-header {
-    padding: 16px;
-  }
-  
-  .card-body {
-    padding: 16px;
-  }
-  
-  .coin-name {
-    font-size: 1.1rem;
-  }
-  
-  .current-price {
-    font-size: 1.5rem;
-  }
-  
-  .high-low {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .more-info-btn {
-    padding: 10px;
-    font-size: 0.85rem;
-  }
-}
-
-/* Modal Responsive Design */
-@media (max-width: 768px) {
-  .blur-overlay {
+  .modal-overlay {
     padding: 10px;
   }
   
-  .more-info-modal {
+  .crypto-modal {
     border-radius: 16px;
     max-height: 95vh;
   }
@@ -588,7 +496,7 @@
   }
   
   .modal-coin-details h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   
   .modal-body {
@@ -607,48 +515,138 @@
   .modal-stat-item {
     padding: 15px;
   }
-}
-
-/* Loading state animation */
-.crypto-card {
-  animation: fadeInUp 0.5s ease-out;
-  animation-fill-mode: both;
-}
-
-.crypto-card:nth-child(1) { animation-delay: 0.1s; }
-.crypto-card:nth-child(2) { animation-delay: 0.2s; }
-.crypto-card:nth-child(3) { animation-delay: 0.3s; }
-.crypto-card:nth-child(4) { animation-delay: 0.4s; }
-.crypto-card:nth-child(5) { animation-delay: 0.5s; }
-.crypto-card:nth-child(6) { animation-delay: 0.6s; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .chart-container {
+    height: 250px;
+    padding: 12px;
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
   }
-  to {
-    opacity: 1;
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .crypto-card {
+    border-radius: 12px;
+  }
+  
+  .card-header {
+    padding: 16px;
+  }
+  
+  .card-body {
+    padding: 16px;
+  }
+  
+  .coin-name {
+    font-size: 1.125rem;
+  }
+  
+  .current-price {
+    font-size: 1.5rem;
+  }
+  
+  .high-low {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .more-info-btn {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .modal-current-price .price {
+    font-size: 2rem;
+  }
+  
+  .chart-container {
+    height: 200px;
   }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
+/* Custom Scrollbar */
+.crypto-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.crypto-modal::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.crypto-modal::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.crypto-modal::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Focus states for accessibility */
+.more-info-btn:focus,
+.modal-close-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Loading state */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading .crypto-card {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  50% {
+    opacity: 0.8;
   }
+}
+
+/* Chart specific styles */
+.recharts-wrapper {
+  font-family: inherit;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: #64748b;
+  font-size: 12px;
+}
+
+.recharts-tooltip-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recharts-default-tooltip {
+  border-radius: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.recharts-tooltip-label {
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
+.recharts-tooltip-item {
+  color: #1f2937 !important;
+  font-weight: 500 !important;
 }
