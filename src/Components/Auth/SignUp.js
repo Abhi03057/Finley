@@ -32,8 +32,9 @@ function SignUp() {
 
   return (
     <div className="signup-container">
-      <h2>Create Account</h2>
       <form onSubmit={handleSignUp} className="signup-form">
+        <h2>Create Account</h2>
+        
         <input
           type="email"
           placeholder="Email"
