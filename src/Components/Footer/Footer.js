@@ -52,6 +52,16 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* ⚠️ Disclaimer */}
+        <div className="footer-disclaimer">
+          <p>
+            <strong>Disclaimer:</strong> The cryptocurrency data displayed on this site is sourced from third-party APIs (e.g., CoinGecko) 
+            and is intended for informational purposes only. While we strive to keep it accurate and updated, 
+            prices and statistics may vary slightly from actual market values. Please verify information 
+            independently before making financial decisions.
+          </p>
+        </div>
+
         {/* Footer Bottom */}
         <div className="footer-bottom">
           <div className="footer-bottom-content">

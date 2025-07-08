@@ -334,3 +334,17 @@
     min-width: auto;
   }
 }
+.footer-disclaimer {
+  background-color: #1e1e1e;
+  color: #bbb;
+  font-size: 0.85rem;
+  padding: 16px 0;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+}
+.footer-disclaimer p {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.5;
+}

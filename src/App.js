@@ -7,7 +7,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Herosection from './Components/Homepage/Herosection';
 import Currencydata from './Components/Homepage/Currencydata';
 import Footer from './Components/Footer/Footer';
-import News from './Components/News/News'; 
+import News from './Components/News/News';
 
 function App() {
   return (
@@ -21,7 +21,9 @@ function App() {
             element={
               <>
                 <Herosection />
-                <Currencydata />
+                <div id="market-section">
+                  <Currencydata />
+                </div>
               </>
             }
           />

@@ -20,6 +20,17 @@ function Herosection() {
     fetchCoins();
   }, []);
 
+  const handleStartTrading = () => {
+    window.open('https://www.coingecko.com/', '_blank');
+  };
+
+  const handleViewMarkets = () => {
+    const marketSection = document.getElementById("market-section");
+    if (marketSection) {
+      marketSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="hero-section">
       <div className="hero-container">
@@ -35,8 +46,8 @@ function Herosection() {
             </p>
 
             <div className="hero-buttons">
-              <button className="btn btn-primary">Start Trading</button>
-              <button className="btn btn-secondary">View Markets</button>
+              <button className="btn btn-primary" onClick={handleStartTrading}>Start Trading</button>
+              <button className="btn btn-secondary" onClick={handleViewMarkets}>View Markets</button>
             </div>
 
             <div className="hero-stats">
