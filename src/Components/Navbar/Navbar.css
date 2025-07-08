@@ -169,3 +169,26 @@
 .nav-links li a.active::before {
   width: 100%;
 }
+
+.user-email {
+  font-size: 0.95rem;
+  color: #a5f3fc;
+  padding: 8px 16px;
+  background: rgba(0, 209, 255, 0.1);
+  border-radius: 12px;
+}
+
+.signout-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #ff4d4d, #ff3333);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signout-btn:hover {
+  background: linear-gradient(135deg, #e60000, #cc0000);
+}
