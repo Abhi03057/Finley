@@ -1,12 +1,12 @@
+/* 🌌 Finley Hero Section - Dark + Blue + Terminal Vibes */
 .hero-section {
   min-height: 100vh;
   background: #0c0c0c;
-  background-image: 
-    radial-gradient(circle at 25% 25%, #1a1a1a 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, #0f0f0f 0%, transparent 50%);
+  background-image:
+    radial-gradient(circle at 25% 25%, #121212 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, #1a1a1a 0%, transparent 50%);
   display: flex;
   align-items: center;
-  padding: 0;
   position: relative;
   overflow: hidden;
 }
@@ -14,25 +14,16 @@
 .hero-section::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 98px,
-      rgba(255, 255, 255, 0.02) 100px
-    );
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.01) 50%, transparent 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 98px, rgba(255,255,255,0.02) 100px);
   pointer-events: none;
+  z-index: 0;
 }
 
 .hero-container {
   width: 100%;
-  max-width: none;
-  margin: 0;
   padding: 0 40px;
   position: relative;
   z-index: 1;
@@ -40,7 +31,6 @@
 
 .hero-content {
   display: flex;
-  align-items: stretch;
   min-height: 100vh;
   gap: 0;
 }
@@ -50,32 +40,30 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px 60px 80px 0;
+  padding: 80px 60px;
   max-width: 600px;
 }
 
 .hero-title {
   font-size: 4.5rem;
-  font-weight: 300;
-  line-height: 0.9;
+  font-weight: 600;
+  line-height: 1;
+  color: #e2e8f0;
   margin-bottom: 20px;
-  color: #ffffff;
   letter-spacing: -0.04em;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
 .hero-title strong {
-  font-weight: 600;
+  color: #60a5fa;
   display: block;
-  margin-top: 8px;
 }
 
 .hero-tagline {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #808080;
+  color: #94a3b8;
   margin-bottom: 40px;
-  font-weight: 400;
   max-width: 460px;
 }
 
@@ -87,47 +75,43 @@
 
 .btn {
   padding: 12px 24px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 0.9rem;
-  font-weight: 500;
-  border: 1px solid #333;
-  cursor: pointer;
-  transition: all 0.15s ease;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-  background: transparent;
-  color: #ffffff;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  background: #3b82f6;
+  color: #ffffff;
+  border: 1px solid #3b82f6;
 }
 
 .btn-primary:hover {
-  background: #f0f0f0;
-  border-color: #f0f0f0;
+  background: #60a5fa;
+  border-color: #60a5fa;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #ffffff;
+  background: #1a1a1a;
+  color: #94a3b8;
   border: 1px solid #333;
 }
 
 .btn-secondary:hover {
-  border-color: #666;
+  color: #e2e8f0;
+  border-color: #60a5fa;
 }
 
 .hero-stats {
   display: flex;
   gap: 48px;
-  padding: 0;
-  border: none;
 }
 
 .stat-item {
@@ -138,17 +122,17 @@
 
 .stat-value {
   font-size: 1.4rem;
-  font-weight: 600;
-  color: #ffffff;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+  font-weight: 700;
+  font-family: 'SF Mono', monospace;
+  color: #60a5fa;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
 }
 
 .stat-label {
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 0.75rem;
+  color: #6b7280;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 .hero-image {
@@ -157,90 +141,68 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: linear-gradient(135deg, #111111 0%, #0a0a0a 100%);
   border-left: 1px solid #1a1a1a;
+  background: #101010;
   position: relative;
+  height: 85vh;
 }
 
-.hero-image::before {
+.hero-image::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
   pointer-events: none;
+  opacity: 0.3;
 }
 
 .dashboard-mockup {
   width: 100%;
-  max-width: 520px;
-  background: #0a0a0a;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  border: 1px solid #1a1a1a;
+  max-width: 380px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
   overflow: hidden;
-  position: relative;
-  z-index: 1;
 }
 
 .mockup-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background: #0f0f0f;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.mockup-dots {
-  display: flex;
-  gap: 6px;
+  padding: 12px 20px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
 }
 
 .mockup-dots span {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #333;
+  background: #475569;
 }
 
 .mockup-title {
-  color: #666;
-  font-size: 0.8rem;
-  font-weight: 500;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-family: 'SF Mono', monospace;
 }
 
 .mockup-content {
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .crypto-card {
-  background: #0a0a0a;
-  border-radius: 0;
-  padding: 20px 24px;
-  border: none;
-  border-bottom: 1px solid #1a1a1a;
-  transition: background 0.1s ease;
-  position: relative;
+  background: #0f172a;
+  padding: 16px 20px;
+  border-bottom: 1px solid #1e293b;
 }
 
 .crypto-card:hover {
-  background: #111111;
-}
-
-.crypto-card:last-child {
-  border-bottom: none;
+  background: rgba(59, 130, 246, 0.03);
 }
 
 .crypto-info {
@@ -251,30 +213,23 @@
 }
 
 .crypto-symbol {
+  font-family: 'SF Mono', monospace;
+  color: #e2e8f0;
   font-weight: 600;
-  color: #ffffff;
-  font-size: 1rem;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
 }
 
 .crypto-price {
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 1rem;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
   text-align: right;
+  font-family: 'SF Mono', monospace;
+  font-weight: 500;
+  color: #e2e8f0;
 }
 
 .crypto-change {
-  padding: 0;
-  border-radius: 0;
-  font-size: 0.9rem;
-  font-weight: 500;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
-  min-width: 60px;
   text-align: right;
-  background: none;
-  border: none;
+  font-weight: 500;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.9rem;
 }
 
 .crypto-change.positive {
@@ -285,7 +240,6 @@
   color: #ff4444;
 }
 
-/* Market data ticker */
 .market-ticker {
   position: absolute;
   bottom: 0;
@@ -297,6 +251,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  font-family: 'SF Mono', monospace;
 }
 
 .ticker-content {
@@ -312,7 +267,6 @@
   align-items: center;
   gap: 8px;
   font-size: 0.8rem;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
 }
 
 .ticker-symbol {
@@ -325,10 +279,6 @@
   font-weight: 500;
 }
 
-.ticker-change {
-  font-weight: 500;
-}
-
 .ticker-change.positive {
   color: #00ff88;
 }
@@ -338,122 +288,31 @@
 }
 
 @keyframes scroll {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
-/* Terminal-style grid overlay */
-.hero-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
+/* Responsive */
+@media (max-width: 1024px) {
   .hero-content {
     flex-direction: column;
     min-height: auto;
   }
-  
+
+  .hero-text {
+    padding: 60px 24px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
   .hero-image {
     border-left: none;
     border-top: 1px solid #1a1a1a;
-  }
-  
-  .hero-text {
-    padding: 80px 40px 60px 40px;
-    max-width: none;
-  }
-  
-  .hero-title {
-    font-size: 3.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-container {
-    padding: 0 24px;
-  }
-  
-  .hero-text {
-    padding: 60px 20px 40px 20px;
-  }
-  
-  .hero-title {
-    font-size: 2.8rem;
-  }
-  
-  .hero-stats {
-    gap: 32px;
-  }
-  
-  .hero-image {
-    padding: 20px;
-  }
-  
-  .dashboard-mockup {
-    max-width: 400px;
-  }
-  
-  .crypto-info {
-    grid-template-columns: 60px 1fr auto;
-    gap: 12px;
-  }
-  
-  .mockup-header {
-    padding: 14px 20px;
-  }
-  
-  .crypto-card {
-    padding: 16px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2.2rem;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .btn {
-    width: 100%;
-    max-width: 200px;
-  }
-  
-  .hero-stats {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-  
-  .dashboard-mockup {
-    max-width: 340px;
-  }
-  
-  .crypto-info {
-    grid-template-columns: 50px 1fr auto;
-    gap: 8px;
-  }
-  
-  .ticker-content {
-    gap: 32px;
+    padding: 32px;
+    height: auto;
   }
 }

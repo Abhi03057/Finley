@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import "./Currencydata.css";
 
-// Sample data - Replace this with your actual data import
+// Sample data with 7-day price history
 const sampleCoinData = [
   {
     id: 'bitcoin',
@@ -18,9 +19,11 @@ const sampleCoinData = [
     circulating_supply: 19654321,
     ath: 69045.67,
     atl: 67.81,
-    ath_date: '2021-11-10T14:24:11.849Z',
-    atl_date: '2013-07-06T00:00:00.000Z',
-    last_updated: '2024-01-15T10:30:45.123Z'
+    market_cap_rank: 1,
+    sparkline_in_7d: [
+      65432, 66123, 64789, 67234, 68123, 66789, 67234
+    ],
+    price_change_percentage_7d: 3.24
   },
   {
     id: 'ethereum',
@@ -37,9 +40,11 @@ const sampleCoinData = [
     circulating_supply: 120234567,
     ath: 4878.26,
     atl: 0.432,
-    ath_date: '2021-11-10T14:24:11.849Z',
-    atl_date: '2015-10-21T00:00:00.000Z',
-    last_updated: '2024-01-15T10:30:45.123Z'
+    market_cap_rank: 2,
+    sparkline_in_7d: [
+      3456, 3512, 3489, 3567, 3623, 3534, 3567
+    ],
+    price_change_percentage_7d: 2.18
   },
   {
     id: 'solana',
@@ -56,15 +61,115 @@ const sampleCoinData = [
     circulating_supply: 446789012,
     ath: 259.96,
     atl: 0.500,
-    ath_date: '2021-11-06T21:54:35.825Z',
-    atl_date: '2020-05-11T19:35:23.449Z',
-    last_updated: '2024-01-15T10:30:45.123Z'
+    market_cap_rank: 3,
+    sparkline_in_7d: [
+      185, 192, 188, 195, 189, 187, 189
+    ],
+    price_change_percentage_7d: -1.24
+  },
+  {
+    id: 'cardano',
+    name: 'Cardano',
+    symbol: 'ADA',
+    image: 'https://assets.coingecko.com/coins/images/975/large/cardano.png',
+    current_price: 0.4567,
+    price_change_24h: 0.0234,
+    price_change_percentage_24h: 5.41,
+    high_24h: 0.4689,
+    low_24h: 0.4321,
+    market_cap: 15678901234,
+    total_volume: 567890123,
+    circulating_supply: 34567890123,
+    ath: 3.09,
+    atl: 0.017,
+    market_cap_rank: 4,
+    sparkline_in_7d: [
+      0.42, 0.44, 0.43, 0.45, 0.46, 0.44, 0.456
+    ],
+    price_change_percentage_7d: 8.57
+  },
+  {
+    id: 'binancecoin',
+    name: 'BNB',
+    symbol: 'BNB',
+    image: 'https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png',
+    current_price: 312.45,
+    price_change_24h: -8.67,
+    price_change_percentage_24h: -2.70,
+    high_24h: 325.67,
+    low_24h: 308.23,
+    market_cap: 46789012345,
+    total_volume: 1234567890,
+    circulating_supply: 149567890,
+    ath: 686.31,
+    atl: 0.096,
+    market_cap_rank: 5,
+    sparkline_in_7d: [
+      320, 315, 318, 312, 325, 310, 312
+    ],
+    price_change_percentage_7d: -2.36
+  },
+  {
+    id: 'ripple',
+    name: 'XRP',
+    symbol: 'XRP',
+    image: 'https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png',
+    current_price: 0.6234,
+    price_change_24h: 0.0456,
+    price_change_percentage_24h: 7.89,
+    high_24h: 0.6456,
+    low_24h: 0.5987,
+    market_cap: 33456789012,
+    total_volume: 2345678901,
+    circulating_supply: 53678901234,
+    ath: 3.84,
+    atl: 0.002,
+    market_cap_rank: 6,
+    sparkline_in_7d: [
+      0.58, 0.60, 0.59, 0.62, 0.64, 0.61, 0.623
+    ],
+    price_change_percentage_7d: 7.41
   }
 ];
 
-// Modal Component
-function CryptoModal({ coin, isOpen, onClose }) {
+// Mini chart component
+function MiniChart({ data, isPositive }) {
+  const chartData = data.map((price, index) => ({
+    price: price,
+    index: index
+  }));
+
+  return (
+    <div className="mini-chart">
+      <ResponsiveContainer width="100%" height={50}>
+        <LineChart data={chartData}>
+          <Line 
+            type="monotone" 
+            dataKey="price" 
+            stroke={isPositive ? '#16a34a' : '#dc2626'}
+            strokeWidth={2}
+            dot={false}
+            activeDot={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+function CryptoTable() {
+  const [sortBy, setSortBy] = useState('market_cap_rank');
+  const [sortOrder, setSortOrder] = useState('asc');
+
   const formatCurrency = (value) => {
+    if (value < 1) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 4
+      }).format(value);
+    }
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -74,6 +179,19 @@ function CryptoModal({ coin, isOpen, onClose }) {
   };
 
   const formatLargeNumber = (value) => {
+    if (value >= 1e12) {
+      return '$' + (value / 1e12).toFixed(2) + 'T';
+    }
+    if (value >= 1e9) {
+      return '$' + (value / 1e9).toFixed(2) + 'B';
+    }
+    if (value >= 1e6) {
+      return '$' + (value / 1e6).toFixed(2) + 'M';
+    }
+    return '$' + value.toLocaleString();
+  };
+
+  const formatSupply = (value) => {
     if (value >= 1e12) {
       return (value / 1e12).toFixed(2) + 'T';
     }
@@ -86,212 +204,123 @@ function CryptoModal({ coin, isOpen, onClose }) {
     return value.toLocaleString();
   };
 
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
+  const handleSort = (field) => {
+    if (sortBy === field) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(field);
+      setSortOrder('asc');
+    }
   };
 
-  const isPositive = coin.price_change_percentage_24h >= 0;
-
-  // Calculate position of current price between high and low
-  const priceRange = coin.high_24h - coin.low_24h;
-  const currentPosition = ((coin.current_price - coin.low_24h) / priceRange) * 100;
-  const barWidth = Math.abs(currentPosition - 50) * 2; // Distance from center
-
-  if (!isOpen) return null;
+  const sortedData = [...sampleCoinData].sort((a, b) => {
+    let valueA = a[sortBy];
+    let valueB = b[sortBy];
+    
+    if (sortOrder === 'asc') {
+      return valueA > valueB ? 1 : -1;
+    } else {
+      return valueA < valueB ? 1 : -1;
+    }
+  });
 
   return (
-    <div className="blur-overlay" onClick={onClose}>
-      <div className="more-info-modal" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <div className="modal-coin-info">
-            <img 
-              src={coin.image} 
-              alt={coin.name}
-              className="modal-coin-logo"
-              onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/60x60?text=' + coin.symbol;
-              }}
-            />
-            <div className="modal-coin-details">
-              <h3>{coin.name}</h3>
-              <span className="coin-symbol">{coin.symbol.toUpperCase()}</span>
-            </div>
-          </div>
-          <button className="modal-close-btn" onClick={onClose}>
-            ×
-          </button>
-        </div>
+    <div className="crypto-table-container">
+      <div className="table-header">
+        <h2>Cryptocurrency Prices by Market Cap</h2>
+        <p>The global cryptocurrency market cap today is $2.45 Trillion with a 2.1% change in the last 24 hours.</p>
+      </div>
 
-        <div className="modal-body">
-          <div className="modal-current-price">
-            <div className="price">{formatCurrency(coin.current_price)}</div>
-            <div className={`change ${isPositive ? 'positive' : 'negative'}`}>
-              {isPositive ? '+' : ''}{formatCurrency(coin.price_change_24h)}
-              <span>({isPositive ? '+' : ''}{coin.price_change_percentage_24h.toFixed(2)}%)</span>
-            </div>
-          </div>
-
-          <div className="price-bar-section">
-            <h4>24h Price Range</h4>
-            <div className="price-bar">
-              <div 
-                className={`price-bar-inner ${isPositive ? 'up' : 'down'}`}
-                style={{ width: `${barWidth}%`, left: currentPosition < 50 ? `${currentPosition}%` : '50%' }}
-              />
-              <div 
-                className="price-bar-indicator"
-                style={{ left: `${currentPosition}%` }}
-              />
-            </div>
-            <div className="price-bar-labels">
-              <span>Low: {formatCurrency(coin.low_24h)}</span>
-              <div 
-                className="current-position"
-                style={{ left: `${currentPosition}%` }}
-              >
-                Current: {formatCurrency(coin.current_price)}
-              </div>
-              <span>High: {formatCurrency(coin.high_24h)}</span>
-            </div>
-          </div>
-
-          <div className="modal-stats-grid">
-            <div className="modal-stat-item">
-              <div className="label">Market Cap</div>
-              <div className="value">${formatLargeNumber(coin.market_cap)}</div>
-            </div>
-            <div className="modal-stat-item">
-              <div className="label">24h Volume</div>
-              <div className="value">${formatLargeNumber(coin.total_volume)}</div>
-            </div>
-            <div className="modal-stat-item">
-              <div className="label">Circulating Supply</div>
-              <div className="value">{formatLargeNumber(coin.circulating_supply)}</div>
-              <div className="sub-value">{coin.symbol.toUpperCase()}</div>
-            </div>
-            <div className="modal-stat-item">
-              <div className="label">All-Time High</div>
-              <div className="value">{formatCurrency(coin.ath)}</div>
-              <div className="sub-value">{formatDate(coin.ath_date)}</div>
-            </div>
-            <div className="modal-stat-item">
-              <div className="label">All-Time Low</div>
-              <div className="value">{formatCurrency(coin.atl)}</div>
-              <div className="sub-value">{formatDate(coin.atl_date)}</div>
-            </div>
-            <div className="modal-stat-item">
-              <div className="label">Last Updated</div>
-              <div className="value">{formatDate(coin.last_updated)}</div>
-            </div>
-          </div>
-        </div>
+      <div className="table-wrapper">
+        <table className="crypto-table">
+          <thead>
+            <tr>
+              <th className="rank-header">#</th>
+              <th className="name-header">Name</th>
+              <th className="price-header clickable" onClick={() => handleSort('current_price')}>
+                Price
+                {sortBy === 'current_price' && (
+                  <span className="sort-arrow">{sortOrder === 'asc' ? '↑' : '↓'}</span>
+                )}
+              </th>
+              <th className="change-header clickable" onClick={() => handleSort('price_change_percentage_24h')}>
+                24h %
+                {sortBy === 'price_change_percentage_24h' && (
+                  <span className="sort-arrow">{sortOrder === 'asc' ? '↑' : '↓'}</span>
+                )}
+              </th>
+              <th className="change-header clickable" onClick={() => handleSort('price_change_percentage_7d')}>
+                7d %
+                {sortBy === 'price_change_percentage_7d' && (
+                  <span className="sort-arrow">{sortOrder === 'asc' ? '↑' : '↓'}</span>
+                )}
+              </th>
+              <th className="market-cap-header clickable" onClick={() => handleSort('market_cap')}>
+                Market Cap
+                {sortBy === 'market_cap' && (
+                  <span className="sort-arrow">{sortOrder === 'asc' ? '↑' : '↓'}</span>
+                )}
+              </th>
+              <th className="volume-header clickable" onClick={() => handleSort('total_volume')}>
+                Volume(24h)
+                {sortBy === 'total_volume' && (
+                  <span className="sort-arrow">{sortOrder === 'asc' ? '↑' : '↓'}</span>
+                )}
+              </th>
+              <th className="supply-header">Circulating Supply</th>
+              <th className="chart-header">Last 7 Days</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedData.map((coin, index) => {
+              const is24hPositive = coin.price_change_percentage_24h >= 0;
+              const is7dPositive = coin.price_change_percentage_7d >= 0;
+              
+              return (
+                <tr key={coin.id} className="crypto-row">
+                  <td className="rank-cell">{coin.market_cap_rank}</td>
+                  <td className="name-cell">
+                    <div className="coin-info">
+                      <img 
+                        src={coin.image} 
+                        alt={coin.name}
+                        className="coin-logo"
+                        onError={(e) => {
+                          e.target.src = 'https://via.placeholder.com/24x24?text=' + coin.symbol;
+                        }}
+                      />
+                      <div className="coin-names">
+                        <span className="coin-name">{coin.name}</span>
+                        <span className="coin-symbol">{coin.symbol.toUpperCase()}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="price-cell">{formatCurrency(coin.current_price)}</td>
+                  <td className={`change-cell ${is24hPositive ? 'positive' : 'negative'}`}>
+                    {is24hPositive ? '+' : ''}{coin.price_change_percentage_24h.toFixed(2)}%
+                  </td>
+                  <td className={`change-cell ${is7dPositive ? 'positive' : 'negative'}`}>
+                    {is7dPositive ? '+' : ''}{coin.price_change_percentage_7d.toFixed(2)}%
+                  </td>
+                  <td className="market-cap-cell">{formatLargeNumber(coin.market_cap)}</td>
+                  <td className="volume-cell">{formatLargeNumber(coin.total_volume)}</td>
+                  <td className="supply-cell">
+                    <div className="supply-info">
+                      <span className="supply-amount">{formatSupply(coin.circulating_supply)}</span>
+                      <span className="supply-symbol">{coin.symbol.toUpperCase()}</span>
+                    </div>
+                  </td>
+                  <td className="chart-cell">
+                    <MiniChart data={coin.sparkline_in_7d} isPositive={is7dPositive} />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 }
 
-// Individual Crypto Card Component
-function CryptoCard({ coin }) {
-  const [showModal, setShowModal] = useState(false);
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }).format(value);
-  };
-
-  const isPositive = coin.price_change_percentage_24h >= 0;
-
-  return (
-    <>
-      <div className="crypto-card">
-        <div className="card-header">
-          <div className="coin-info">
-            <img 
-              src={coin.image} 
-              alt={coin.name}
-              className="coin-logo"
-              onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/32x32?text=' + coin.symbol;
-              }}
-            />
-            <div className="coin-details">
-              <h3 className="coin-name">{coin.name}</h3>
-              <span className="coin-symbol">{coin.symbol.toUpperCase()}</span>
-            </div>
-          </div>
-          <div className="price-info">
-            <div className="current-price">{formatCurrency(coin.current_price)}</div>
-            <div className={`price-change ${isPositive ? 'positive' : 'negative'}`}>
-              {isPositive ? '+' : ''}{formatCurrency(coin.price_change_24h)}
-              <span className="percentage">
-                ({isPositive ? '+' : ''}{coin.price_change_percentage_24h.toFixed(2)}%)
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="card-body">
-          <div className="high-low">
-            <div className="high-low-item">
-              <span className="label">24h High</span>
-              <span className="value high">{formatCurrency(coin.high_24h)}</span>
-            </div>
-            <div className="high-low-item">
-              <span className="label">24h Low</span>
-              <span className="value low">{formatCurrency(coin.low_24h)}</span>
-            </div>
-          </div>
-
-          <button 
-            className="more-info-btn"
-            onClick={() => setShowModal(true)}
-          >
-            More Info
-            <span className="arrow down">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <CryptoModal 
-        coin={coin} 
-        isOpen={showModal} 
-        onClose={() => setShowModal(false)} 
-      />
-    </>
-  );
-}
-
-// Main Crypto List Component
-function Currencydata() {
-  // Replace sampleCoinData with your actual imported data
-  const coinData = sampleCoinData;
-
-  return (
-    <section className="crypto-list-section">
-      <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">Live Cryptocurrency Prices</h2>
-          <p className="section-subtitle">
-            Track real-time prices and market data for top cryptocurrencies
-          </p>
-        </div>
-        
-        <div className="coin-grid">
-          {coinData.map((coin) => (
-            <CryptoCard key={coin.id} coin={coin} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export default Currencydata;
+export default CryptoTable;
