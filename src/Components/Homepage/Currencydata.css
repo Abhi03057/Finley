@@ -427,3 +427,140 @@
 .market-table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #666666;
 }
+/* Add these mobile-specific styles to your Currencydata.css */
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+  .market-table-container {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .market-heading {
+    font-size: 20px;
+  }
+  
+  .market-table {
+    font-size: 12px;
+  }
+  
+  /* Reduce table cell padding on mobile */
+  .market-table th,
+  .market-table td {
+    padding: 8px 2px; /* Reduced horizontal padding from 4px to 2px */
+  }
+  
+  /* Reduce gap between coin image and name */
+  .coin-cell {
+    gap: 4px; /* Reduced from 8px to 4px */
+    min-width: 100px; /* Reduced from 120px */
+  }
+  
+  .coin-cell img {
+    width: 18px; /* Reduced from 20px */
+    height: 18px; /* Reduced from 20px */
+  }
+  
+  .coin-cell span {
+    font-size: 11px; /* Slightly smaller font */
+  }
+  
+  /* Optimize column widths for mobile */
+  .market-table th:first-child,
+  .market-table td:first-child {
+    width: 25px; /* Reduced rank column width */
+    padding: 8px 1px;
+  }
+  
+  .market-table th:nth-child(2),
+  .market-table td:nth-child(2) {
+    width: 90px; /* Fixed width for coin column */
+    padding: 8px 1px;
+  }
+  
+  .market-table th:nth-child(3),
+  .market-table td:nth-child(3) {
+    width: 70px; /* Fixed width for price column */
+    padding: 8px 1px;
+  }
+  
+  /* Hide less important columns on very small screens */
+  .market-table th:nth-child(8),
+  .market-table td:nth-child(8) {
+    display: none; /* Hide circulating supply on mobile */
+  }
+  
+  .modal-fullscreen {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .modal-content {
+    padding: 16px;
+  }
+  
+  .modal-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Mobile responsive for links */
+  .coin-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .coin-links li:not(:last-child)::after {
+    display: none;
+  }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+  .market-table th,
+  .market-table td {
+    padding: 6px 1px; /* Further reduced padding */
+  }
+  
+  .coin-cell {
+    gap: 2px; /* Minimal gap */
+    min-width: 80px;
+    max-width: 80px; /* Prevent overflow */
+  }
+  
+  .coin-cell img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+  }
+  
+  .coin-cell span {
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 60px; /* Limit text width for very small screens */
+  }
+  
+  .market-table th:first-child,
+  .market-table td:first-child {
+    width: 20px;
+  }
+  
+  .market-table th:nth-child(2),
+  .market-table td:nth-child(2) {
+    width: 70px;
+  }
+  
+  .market-table th:nth-child(3),
+  .market-table td:nth-child(3) {
+    width: 60px;
+  }
+  
+  /* Hide additional columns on very small screens */
+  .market-table th:nth-child(7),
+  .market-table td:nth-child(7),
+  .market-table th:nth-child(8),
+  .market-table td:nth-child(8) {
+    display: none; /* Hide volume and circulating supply */
+  }
+}

@@ -11,9 +11,16 @@ function News() {
     const fetchNews = async () => {
       try {
         setLoading(true);
+
+        // 👇 Calculate "from" date = 2 days ago
+        const fromDate = new Date();
+        fromDate.setDate(fromDate.getDate() - 2);
+        const formattedFrom = fromDate.toISOString().split('T')[0]; // YYYY-MM-DD
+
         const res = await fetch(
-          `https://gnews.io/api/v4/search?q=cryptocurrency&lang=en&max=10&token=350ea51f4fdb51c7519e4a745428ddf3`
+          `https://gnews.io/api/v4/search?q=cryptocurrency&lang=en&sortby=publishedAt&from=${formattedFrom}&max=10&token=350ea51f4fdb51c7519e4a745428ddf3`
         );
+
         const data = await res.json();
 
         if (data.articles) {

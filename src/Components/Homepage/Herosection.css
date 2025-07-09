@@ -316,3 +316,107 @@
     height: auto;
   }
 }
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero-text {
+    padding: 60px 24px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-image {
+    border-left: none;
+    border-top: 1px solid #1a1a1a;
+    padding: 32px;
+    height: auto;
+
+    margin-bottom: 50px;
+  }
+}
+/* Add these styles to your existing Herosection.css file */
+
+/* Mobile responsive fixes for dashboard mockup */
+@media (max-width: 768px) {
+  .hero-image {
+    padding: 20px;
+  }
+  
+  .dashboard-mockup {
+    max-width: 100%;
+    width: 100%;
+    min-width: 320px; /* Ensure minimum width for readability */
+  }
+  
+  .crypto-info {
+    grid-template-columns: 60px 1fr 80px; /* Adjust column widths for mobile */
+    gap: 12px;
+  }
+  
+  .crypto-symbol {
+    font-size: 0.9rem;
+  }
+  
+  .crypto-price {
+    font-size: 0.9rem;
+  }
+  
+  .crypto-change {
+    font-size: 0.8rem;
+  }
+  
+  .mockup-header {
+    padding: 10px 16px;
+  }
+  
+  .crypto-card {
+    padding: 14px 16px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .hero-image {
+    padding: 16px;
+  }
+  
+  .dashboard-mockup {
+    min-width: 280px;
+  }
+  
+  .crypto-info {
+    grid-template-columns: 50px 1fr 70px; /* Further compress for very small screens */
+    gap: 8px;
+  }
+  
+  .crypto-symbol {
+    font-size: 0.8rem;
+  }
+  
+  .crypto-price {
+    font-size: 0.8rem;
+  }
+  
+  .crypto-change {
+    font-size: 0.75rem;
+  }
+  
+  .mockup-header {
+    padding: 8px 12px;
+  }
+  
+  .crypto-card {
+    padding: 12px 12px;
+  }
+  
+  .mockup-title {
+    font-size: 0.7rem;
+  }
+}
