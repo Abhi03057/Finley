@@ -81,7 +81,9 @@ function Herosection() {
                       <span className="crypto-symbol">{coin.symbol.toUpperCase()}</span>
                       <span className="crypto-price">${coin.current_price.toLocaleString()}</span>
                       <span className={`crypto-change ${coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
-                        {coin.price_change_percentage_24h?.toFixed(2)}%
+                        {typeof coin.price_change_percentage_24h === 'number'
+                          ? coin.price_change_percentage_24h.toFixed(2)
+                          : '—'}%
                       </span>
                     </div>
                   </div>
@@ -99,7 +101,9 @@ function Herosection() {
               <span className="ticker-symbol">{coin.symbol.toUpperCase()}</span>
               <span className="ticker-price">${coin.current_price.toLocaleString()}</span>
               <span className={`ticker-change ${coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
-                {coin.price_change_percentage_24h?.toFixed(2)}%
+                {typeof coin.price_change_percentage_24h === 'number'
+                  ? coin.price_change_percentage_24h.toFixed(2)
+                  : '—'}%
               </span>
             </div>
           ))}
